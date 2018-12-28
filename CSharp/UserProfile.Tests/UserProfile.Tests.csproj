@@ -56,9 +56,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompositionTests.cs" />
     <Compile Include="DBIconReaderTests.cs" />
     <Compile Include="FakeUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TraceIconReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
