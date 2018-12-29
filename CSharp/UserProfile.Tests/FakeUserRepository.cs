@@ -8,9 +8,12 @@ namespace Ploeh.Samples.UserProfile.Tests
 {
     public class FakeUserRepository : Dictionary<int, string>, IUserRepository
     {
-        public bool TryReadIconId(int userId, out string iconId)
+        public Maybe<string> ReadIconId(int userId)
         {
-            return TryGetValue(userId, out iconId);
+            if (TryGetValue(userId, out var iconId))
+                return new Maybe<string>(iconId);
+
+            return new Maybe<string>();
         }
     }
 }

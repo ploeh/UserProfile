@@ -19,12 +19,18 @@ namespace Ploeh.Samples.UserProfile
 
         public Icon ReadIcon(User user)
         {
-            if (!repository.TryReadIconId(user.Id, out string iconId))
-                return next.ReadIcon(user);
+            Maybe<string> mid = repository.ReadIconId(user.Id);
+            Lazy<Icon> lazyResult = mid.Aggregate(
+                @default: new Lazy<Icon>(() => next.ReadIcon(user)),
+                func: id => new Lazy<Icon>(() => CreateIcon(id)));
+            return lazyResult.Value;
+        }
 
+        private Icon CreateIcon(string id)
+        {
             var parameters = new Dictionary<string, string>
             {
-                { "iconId", iconId }
+                { "iconId", id }
             };
             return new Icon(urlTemplate.BindByName(baseUrl, parameters));
         }

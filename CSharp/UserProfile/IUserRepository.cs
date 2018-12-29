@@ -2,6 +2,6 @@
 {
     public interface IUserRepository
     {
-        bool TryReadIconId(int userId, out string iconId);
+        Maybe<string> ReadIconId(int userId);
     }
 }
