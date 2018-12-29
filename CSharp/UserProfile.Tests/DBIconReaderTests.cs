@@ -27,12 +27,12 @@ namespace Ploeh.Samples.UserProfile.Tests
                 { id, id.ToString() },
                 { 10, "more stuff" }
             };
-            var sut = new DBIconReader(repo, new DefaultIconReader());
+            var sut = new DBIconReader(repo);
 
             var user = new User(id, name, email, useGravatar, useIdenticon);
             var actual = sut.ReadIcon(user);
 
-            Assert.Equal(expected, actual.Url.ToString());
+            Assert.Equal(new Maybe<Icon>(new Icon(new Uri(expected))), actual);
         }
 
         [Theory]
@@ -51,12 +51,12 @@ namespace Ploeh.Samples.UserProfile.Tests
                 { 99, "other junk" },
                 { 10, "more stuff" }
             };
-            var sut = new DBIconReader(repo, new DefaultIconReader());
+            var sut = new DBIconReader(repo);
 
             var user = new User(id, name, email, useGravatar, useIdenticon);
             var actual = sut.ReadIcon(user);
 
-            Assert.Equal(Icon.Default, actual);
+            Assert.Equal(new Maybe<Icon>(), actual);
         }
     }
 }

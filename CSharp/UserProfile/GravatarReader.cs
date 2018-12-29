@@ -8,19 +8,12 @@ namespace Ploeh.Samples.UserProfile
 {
     public class GravatarReader : IIconReader
     {
-        private readonly IIconReader next;
-
-        public GravatarReader(IIconReader next)
-        {
-            this.next = next;
-        }
-
-        public Icon ReadIcon(User user)
+        public Maybe<Icon> ReadIcon(User user)
         {
             if (user.UseGravatar)
-                return new Icon(new Gravatar(user.Email).Url);
+                return new Maybe<Icon>(new Icon(new Gravatar(user.Email).Url));
 
-            return next.ReadIcon(user);
+            return new Maybe<Icon>();
         }
     }
 }

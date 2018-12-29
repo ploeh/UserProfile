@@ -76,6 +76,21 @@ namespace Ploeh.Samples.UserProfile
             return Aggregate(seed, x => func(seed, x));
         }
 
+        public T GetValueOrDefault(T @default)
+        {
+            return Aggregate(@default, x => x);
+        }
+
+        public Maybe<TResult> Select<TResult>(Func<T, TResult> selector)
+        {
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return Aggregate(
+                @default: new Maybe<TResult>(),
+                func: x => new Maybe<TResult>(selector(x)));
+        }
+
         public override bool Equals(object obj)
         {
             if (!(obj is Maybe<T> other))

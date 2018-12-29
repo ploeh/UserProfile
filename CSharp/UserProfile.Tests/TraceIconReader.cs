@@ -20,7 +20,7 @@ namespace Ploeh.Samples.UserProfile.Tests
 
         public T Label { get; }
 
-        public Icon ReadIcon(User user)
+        public Maybe<Icon> ReadIcon(User user)
         {
             observations.Add(Label);
             return reader.ReadIcon(user);

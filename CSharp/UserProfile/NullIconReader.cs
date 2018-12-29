@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ploeh.Samples.UserProfile
 {
-    public class DefaultIconReader : IIconReader
+    public class NullIconReader : IIconReader
     {
-        public Icon ReadIcon(User user)
+        public Maybe<Icon> ReadIcon(User user)
         {
-            return Icon.Default;
+            return new Maybe<Icon>();
         }
     }
 }

@@ -8,6 +8,6 @@ namespace Ploeh.Samples.UserProfile
 {
     public interface IIconReader
     {
-        Icon ReadIcon(User user);
+        Maybe<Icon> ReadIcon(User user);
     }
 }

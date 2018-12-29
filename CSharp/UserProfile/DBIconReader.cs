@@ -9,21 +9,15 @@ namespace Ploeh.Samples.UserProfile
     public class DBIconReader : IIconReader
     {
         private readonly IUserRepository repository;
-        private readonly IIconReader next;
 
-        public DBIconReader(IUserRepository repository, IIconReader next)
+        public DBIconReader(IUserRepository repository)
         {
             this.repository = repository;
-            this.next = next;
         }
 
-        public Icon ReadIcon(User user)
+        public Maybe<Icon> ReadIcon(User user)
         {
-            Maybe<string> mid = repository.ReadIconId(user.Id);
-            Lazy<Icon> lazyResult = mid.Aggregate(
-                @default: new Lazy<Icon>(() => next.ReadIcon(user)),
-                func: id => new Lazy<Icon>(() => CreateIcon(id)));
-            return lazyResult.Value;
+            return repository.ReadIconId(user.Id).Select(CreateIcon);
         }
 
         private Icon CreateIcon(string id)

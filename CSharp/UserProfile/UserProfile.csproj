@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompositeIconReader.cs" />
     <Compile Include="DBIconReader.cs" />
     <Compile Include="Gravatar.cs" />
     <Compile Include="GravatarReader.cs" />
@@ -56,8 +57,8 @@
     <Compile Include="IdenticonReader.cs" />
     <Compile Include="IIconReader.cs" />
     <Compile Include="IUserRepository.cs" />
-    <Compile Include="DefaultIconReader.cs" />
     <Compile Include="Maybe.cs" />
+    <Compile Include="NullIconReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>

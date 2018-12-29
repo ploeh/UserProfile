@@ -13,19 +13,12 @@ namespace Ploeh.Samples.UserProfile
 {
     public class IdenticonReader : IIconReader
     {
-        private readonly IIconReader next;
-
-        public IdenticonReader(IIconReader next)
-        {
-            this.next = next;
-        }
-
-        public Icon ReadIcon(User user)
+        public Maybe<Icon> ReadIcon(User user)
         {
             if (user.UseIdenticon)
-                return new Icon(new Uri(baseUrl, HashUser(user)));
+                return new Maybe<Icon>(new Icon(new Uri(baseUrl, HashUser(user))));
 
-            return next.ReadIcon(user);
+            return new Maybe<Icon>();
         }
 
         private readonly static Uri baseUrl =
