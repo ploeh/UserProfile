@@ -57,6 +57,7 @@
     <Compile Include="IIconReader.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="DefaultIconReader.cs" />
+    <Compile Include="Maybe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
