@@ -108,4 +108,30 @@ namespace Ploeh.Samples.UserProfile
                 return hasItem.GetHashCode();
         }
     }
+
+    public static class Maybe
+    {
+        public static Lazy<Maybe<First<T>>> FindFirst<T>(
+            this Lazy<Maybe<First<T>>> m,
+            Lazy<Maybe<First<T>>> other)
+        {
+            if (m.Value.IsPopulated())
+                return m;
+
+            return other;
+        }
+
+        private static bool IsPopulated<T>(this Maybe<T> m)
+        {
+            return m.Aggregate(false, _ => true);
+        }
+
+        public static Lazy<Maybe<First<T>>> FindFirst<T>(
+            this IEnumerable<Lazy<Maybe<First<T>>>> source)
+        {
+            var identity =
+                new Lazy<Maybe<First<T>>>(() => new Maybe<First<T>>());
+            return source.Aggregate(identity, (acc, x) => acc.FindFirst(x));
+        }
+    }
 }

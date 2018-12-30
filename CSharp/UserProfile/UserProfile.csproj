@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="CompositeIconReader.cs" />
     <Compile Include="DBIconReader.cs" />
+    <Compile Include="First.cs" />
     <Compile Include="Gravatar.cs" />
     <Compile Include="GravatarReader.cs" />
     <Compile Include="Icon.cs" />
