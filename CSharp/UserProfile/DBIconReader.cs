@@ -30,6 +30,6 @@ namespace Ploeh.Samples.UserProfile
         }
 
         private readonly Uri baseUrl = new Uri("https://example.com");
-        private readonly UriTemplate urlTemplate = new UriTemplate("users/{iconId}/icon");
+        private readonly UriTemplate.Core.UriTemplate urlTemplate = new UriTemplate.Core.UriTemplate("users/{iconId}/icon");
     }
 }
